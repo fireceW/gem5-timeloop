@@ -1,0 +1,14 @@
+This directory consists of two subdirectories:
+src:
+    Gem5 instruction extension mainly in src/arch/riscv/isa/decode.isa 
+    We modified the code in src/cpu/minor/execut.cc to recognize the extension instruction and invoke the corresponding function script
+gem-tl:
+    The gem-tl directory contains the scripts that execute the gemm conv function
+
+
+The following is the instruction format:
+gemm     rd rs1 rs2 31..25=2  14..12=1 6..2=0x0C 1..0=3
+iload   rd rs1 rs2 31..25=3  14..12=1 6..2=0x0C 1..0=3
+wload     rd rs1 rs2 31..25=4  14..12=1 6..2=0x0C 1..0=3
+conv     rd rs1 rs2 31..25=6  14..12=1 6..2=0x0C 1..0=3
+
