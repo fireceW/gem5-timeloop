@@ -675,36 +675,6 @@ decode QUADRANT default Unknown::unknown() {
             }
         }
 
-
-
-        
-        0x0a: decode FUNCT3{
-            format LoadAdd {
-                0x1:ldad({{
-                    for(int i = 0; i<IMML5; i++){
-		        Rd_sd = Mem_sw;
-		    }		    
-		}});
-
-		
-
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         0x0b: decode FUNCT3 {
             0x2: decode AMOFUNCT {
                 0x2: LoadReserved::lr_w({{
@@ -869,7 +839,6 @@ decode QUADRANT default Unknown::unknown() {
                             Rd = Rs1_sd * Rs2_sd;
                         }}, IntMultOp);
                     }
-
                     0x18: sm4ed({{
                         Rd_sd = _rvk_emu_sm4ed(Rs1_sd, Rs2_sd, (uint8_t)BS);
                     }});
@@ -879,7 +848,7 @@ decode QUADRANT default Unknown::unknown() {
                         }});
                     }
                     0x1a: sm4ks({{
-                            Rd_sd = _rvk_emu_sm4ks(Rs1_sd, Rs2_sd, (uint8_t)BS);
+                        Rd_sd = _rvk_emu_sm4ks(Rs1_sd, Rs2_sd, (uint8_t)BS);
                     }});
                     0x1b: decode BS {
                         0x0: aes64esm({{
@@ -926,21 +895,6 @@ decode QUADRANT default Unknown::unknown() {
                         Rd = negate ? ~res + (Rs1_sd*Rs2_sd == 0 ? 1 : 0)
                                     : res;
                     }}, IntMultOp);
-		 
-
-	            0x2: gemm({{
-		        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-		    0x3: iload({{
-                        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-		    0x4: wload({{
-                        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-
-
-
-
                     0x5: clmul({{
                         uint64_t result = 0;
                         for (int i = 0; i < 64; i++) {
@@ -950,19 +904,6 @@ decode QUADRANT default Unknown::unknown() {
                         }
                         Rd = result;
                     }});
-
-	            0x6: conv({{
-                        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-		    0x7: init_conv({{
-                        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-                    0x8: maxpool({{
-                        Rd = Rs1_sd +  Rs2_sd ;
-                    }});
-
-
-	            
                     0x14: bset({{
                         Rs2 &= (64 - 1);
                         Rd = Rs1 | (UINT64_C(1) << Rs2);
@@ -1152,7 +1093,7 @@ decode QUADRANT default Unknown::unknown() {
         0x0d: UOp::lui({{
             Rd = (uint64_t)(sext<20>(imm) << 12);
         }});
-        
+
         0x0e: decode FUNCT3 {
             format ROp {
                 0x0: decode FUNCT7 {

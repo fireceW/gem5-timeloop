@@ -1006,80 +1006,9 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
         ExecContext context(cpu, *cpu.threads[thread_id], *this, inst);
 
         DPRINTF(MinorExecute, "Committing inst: %s\n", *inst);
- 
-        if(inst->staticInst->getName() == "iload"){
-	   const RegId &reg0 = inst->staticInst->srcRegIdx(0);
-	   RegVal r0 = thread->getReg(reg0); 
-	   const RegId &reg1 = inst->staticInst->srcRegIdx(1);
-	   RegVal r1 = thread->getReg(reg1);
-	   FILE *fp;
-	   fp = fopen("/home/gem5/tmp_result/config.txt", "w");
-	   fprintf(fp, "%d\n" ,r0);
-           fprintf(fp, "%d\n", r1);
-	   fclose(fp);
-	}
-
-	if(inst->staticInst->getName() == "wload"){
-	   const RegId &reg0 = inst->staticInst->srcRegIdx(0);
-	   RegVal r0 = thread->getReg(reg0);
-	   const RegId &reg1 = inst->staticInst->srcRegIdx(1);
-	   RegVal r1 = thread->getReg(reg1);
-	   FILE *fp;
-	   fp = fopen("/home/gem5/tmp_result/config.txt", "w");
-	   fprintf(fp, "%d\n" ,r0);							
-	   fprintf(fp, "%d\n", r1);
-	   fclose(fp);								
-	 }
-
-	if(inst->staticInst->getName() == "conv"){
-             const RegId &reg0 = inst->staticInst->srcRegIdx(0);
-             RegVal r0 = thread->getReg(reg0);
-             const RegId &reg1 = inst->staticInst->srcRegIdx(1);
-             RegVal r1 = thread->getReg(reg1);
-             FILE *fp;
-             fp = fopen("/home/gem5/tmp_result/config.txt", "w");       
-	     fprintf(fp, "%d\n" ,r0);
-             fprintf(fp, "%d\n", r1);
-             fclose(fp);
-	     system("python  /home/gem5/gem-tl/conv.py");
-         }
-
-	if(inst->staticInst->getName() == "gemm"){
-           const RegId &reg0 = inst->staticInst->srcRegIdx(0);
-           RegVal r0 = thread->getReg(reg0);
-           const RegId &reg1 = inst->staticInst->srcRegIdx(1);
-           RegVal r1 = thread->getReg(reg1);
-           FILE *fp;
-           fp = fopen("/home/gem5/tmp_result/config.txt", "w");
-           fprintf(fp, "%d\n" ,r0);
-           fprintf(fp, "%d\n", r1);
-           fclose(fp);
-	   system("python  /home/gem5/gem-tl/gemm.py");
-
-        }
-	if(inst->staticInst->getName() == "maxpool"){
-           const RegId &reg0 = inst->staticInst->srcRegIdx(0);
-           RegVal r0 = thread->getReg(reg0);
-           const RegId &reg1 = inst->staticInst->srcRegIdx(1);
-           RegVal r1 = thread->getReg(reg1);
-           FILE *fp;
-           fp = fopen("/home/gem5/tmp_result/config.txt", "w");
-           fprintf(fp, "%d\n" ,r0);
-           fprintf(fp, "%d\n", r1);
-           fclose(fp);
-	   system("python  /home/gem5/gem-tl/maxpool.py");
-        }
-
-
-
-	
-         
-
 
         fault = inst->staticInst->execute(&context,
             inst->traceData);
-        
-        
 
         /* Set the predicate for tracing and dump */
         if (inst->traceData)

@@ -26,9 +26,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include<stdlib.h>
-#include<iostream>
-using namespace std;
+
 #include "arch/riscv/decoder.hh"
 #include "arch/riscv/types.hh"
 #include "base/bitfield.hh"
@@ -90,12 +88,10 @@ Decoder::decode(ExtMachInst mach_inst, Addr addr)
     StaticInstPtr &si = instMap[mach_inst];
     if (!si)
         si = decodeInst(mach_inst);
+
     DPRINTF(Decode, "Decode: Decoded %s instruction: %#x\n",
             si->getName(), mach_inst);
-    
-    
     return si;
-    
 }
 
 StaticInstPtr

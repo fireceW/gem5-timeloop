@@ -1,0 +1,61 @@
+input file: ../gtimeloop/prob/gemm.yaml
+input file: ../gtimeloop/arch/components/smartbuffer_RF.yaml
+input file: ../gtimeloop/arch/components/smartbuffer_SRAM.yaml
+input file: ../gtimeloop/arch/eyeriss_like.yaml
+input file: ../gtimeloop/constraints/eyeriss_like_arch_constraints.yaml
+input file: ../gtimeloop/constraints/eyeriss_like_map_constraints.yaml
+input file: ../gtimeloop/mapper/mapper.yaml
+  _______                __                
+ /_  __(_)___ ___  ___  / /___  ____  ____ 
+  / / / / __ `__ \/ _ \/ / __ \/ __ \/ __ \
+ / / / / / / / / /  __/ / /_/ / /_/ / /_/ /
+/_/ /_/_/ /_/ /_/\___/_/\____/\____/ .___/ 
+                                  /_/      
+
+Problem configuration complete.
+execute:/usr/local/bin/accelergy ../gtimeloop/prob/gemm.yaml ../gtimeloop/arch/components/smartbuffer_RF.yaml ../gtimeloop/arch/components/smartbuffer_SRAM.yaml ../gtimeloop/arch/eyeriss_like.yaml ../gtimeloop/constraints/eyeriss_like_arch_constraints.yaml ../gtimeloop/constraints/eyeriss_like_map_constraints.yaml ../gtimeloop/mapper/mapper.yaml --oprefix timeloop-mapper. -o ./ > timeloop-mapper.accelergy.log 2>&1
+Generate Accelergy ERT (energy reference table) to replace internal energy model.
+Generate Accelergy ART (area reference table) to replace internal area model.
+Architecture configuration complete.
+Sparse optimization configuration complete.
+Using threads = 8
+Mapper configuration complete.
+WARNING: Interpreting 0 to mean full problem dimension instead of residue.
+WARNING: Interpreting 0 to mean full problem dimension instead of residue.
+WARNING: Interpreting 0 to mean full problem dimension instead of residue.
+Initializing Index Factorization subspace.
+  Factorization options along problem dimension C = 16
+  Factorization options along problem dimension M = 1
+  Factorization options along problem dimension R = 1
+  Factorization options along problem dimension S = 1
+  Factorization options along problem dimension N = 1
+  Factorization options along problem dimension P = 1
+  Factorization options along problem dimension Q = 1
+Mapspace Dimension [IndexFactorization] Size: 16
+Mapspace Dimension [LoopPermutation] Size: 1
+Mapspace Dimension [Spatial] Size: 1
+Mapspace Dimension [DatatypeBypass] Size: 1
+Mapspace split! Per-split Mapping Dimension [IndexFactorization] Size: 2 Residue: 0
+Mapspace construction complete.
+Search configuration complete.
+[  6] Utilization = 0.02 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] C2 - L3[] Q1 C3Y - L2[I] Q1 - L1[W] Q1 - L0[O] Q1 
+[  3] Utilization = 0.02 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] Q1 - L3[] Q1 C3Y - L2[I] Q1 - L1[W] C2 - L0[O] Q1 
+[  7] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] C3 - L3[] Q1 - L2[I] Q1 - L1[W] C2 - L0[O] Q1 
+[  0] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] Q1 - L3[] Q1 - L2[I] Q1 - L1[W] C6 - L0[O] Q1 
+[  5] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] C2 - L3[] Q1 - L2[I] Q1 - L1[W] C3 - L0[O] Q1 
+[  4] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] C6 - L3[] Q1 - L2[I] Q1 - L1[W] Q1 - L0[O] Q1 
+[  1] Utilization = 0.04 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] Q1 - L3[] Q1 C6Y - L2[I] Q1 - L1[W] Q1 - L0[O] Q1 
+[  2] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] Q1 - L3[] Q1 C2Y - L2[I] Q1 - L1[W] C3 - L0[O] Q1 
+[  0] Utilization = 0.01 | pJ/Compute =  515.476 | L5[WIO] Q1 - L4[IO] C3 - L3[] Q1 C2Y - L2[I] Q1 - L1[W] Q1 - L0[O] Q1 
+[  0] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  5] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  1] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  4] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  7] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  3] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  6] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+[  2] STATEMENT: 500 suboptimal mappings found since the last upgrade, terminating search.
+
+
+Summary stats for best mapping found by mapper:
+  Utilization = 0.04 | pJ/Compute =  515.476

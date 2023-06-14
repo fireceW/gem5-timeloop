@@ -554,8 +554,6 @@ class ISAParser(Grammar):
         self.fileNameStack = Stack()
 
         symbols = ("makeList", "re")
-        for s in symbols:
-            print(s)
         self.exportContext = dict([(s, eval(s)) for s in symbols])
         self.exportContext.update(
             {
@@ -712,7 +710,6 @@ class ISAParser(Grammar):
                 print("} // namespace gem5", file=f)
 
         # instruction execution
-        
         splits = self.splits[self.get_file("exec")]
         for i in range(1, splits + 1):
             file = "generic_cpu_exec.cc"
@@ -734,7 +731,7 @@ class ISAParser(Grammar):
                 print('#include "%s"' % fn, file=f)
                 print("} // namespace %s" % self.namespace, file=f)
                 print("} // namespace gem5", file=f)
-        
+
     scaremonger_template = """// DO NOT EDIT
 // This file was automatically generated from an ISA description:
 //   %(filename)s

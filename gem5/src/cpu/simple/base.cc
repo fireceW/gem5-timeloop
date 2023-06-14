@@ -354,6 +354,7 @@ BaseSimpleCPU::preExecute()
         //Read the next micro op from the macro op
         curStaticInst = curMacroStaticInst->fetchMicroop(pc_state.microPC());
     }
+
     //If we decoded an instruction this "tick", record information about it.
     if (curStaticInst) {
 #if TRACING_ON

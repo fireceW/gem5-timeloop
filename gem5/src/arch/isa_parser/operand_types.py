@@ -219,19 +219,13 @@ class RegOperand(Operand):
 class RegValOperand(RegOperand):
     def makeRead(self):
         reg_val = f"xc->getRegOperand(this, {self.src_reg_idx})"
-        
+
         if self.ctype == "float":
             reg_val = f"bitsToFloat32({reg_val})"
         elif self.ctype == "double":
             reg_val = f"bitsToFloat64({reg_val})"
 
-        return f"""
-        {{
-            {self.base_name} = {reg_val}\n;
-
-
-        }}"""
-    
+        return f"{self.base_name} = {reg_val};\n"
 
     def makeWrite(self):
         reg_val = self.base_name
@@ -243,8 +237,6 @@ class RegValOperand(RegOperand):
 
         return f"""
         {{
-
-
             RegVal final_val = {reg_val};
             xc->setRegOperand(this, {self.dest_reg_idx}, final_val);
             if (traceData) {{

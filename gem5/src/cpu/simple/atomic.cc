@@ -684,70 +684,8 @@ AtomicSimpleCPU::tick()
 
             Tick stall_ticks = 0;
             if (curStaticInst) {
-		/*
-	        //printf("the instruction is %s instr\n",curStaticInst->getName().c_str());               
-	        if (curStaticInst->getName()=="iload"){
-		    
-		    const RegId &reg = curStaticInst->srcRegIdx(0);
-		    RegVal r1 = thread->getReg(reg);
-		    const RegId &reg1 = curStaticInst->srcRegIdx(1);
-		    RegVal r2 = thread->getReg(reg1);
-		     FILE* fp;
-                    fp = fopen("/home/gem5/tmp_result/config.txt", "w");
-                    fprintf(fp, "%d\n", r1);
-		    fprintf(fp, "%d\n", r2);
-		    fclose(fp);
-                    } 
-                else if (curStaticInst->getName()=="wload"){
-	            const RegId &reg = curStaticInst->srcRegIdx(0);
-                    RegVal r1 = thread->getReg(reg);
-                    const RegId &reg1 = curStaticInst->srcRegIdx(1);
-                    RegVal r2 = thread->getReg(reg1);
-                    FILE* fp;
-                    fp = fopen("/home/gem5/tmp_result/config.txt", "a");
-                    fprintf(fp, "%d\n", r1);
-                    fprintf(fp, "%d\n", r2);
-                    fclose(fp);
-                    } 
-		else if (curStaticInst->getName()=="init_conv"){
-                    const RegId &reg = curStaticInst->srcRegIdx(0);
-                    RegVal r1 = thread->getReg(reg);
-                    const RegId &reg1 = curStaticInst->srcRegIdx(1);
-                    RegVal r2 = thread->getReg(reg1);
-                    FILE* fp;
-                    fp = fopen("/home/gem5/tmp_result/config.txt", "a");
-                    fprintf(fp, "%d\n", r1);
-                    fprintf(fp, "%d\n", r2);
-                    fclose(fp);
-		    //system("python  /home/test-instr/test.py > tmp_result/funct.txt 2>&1");
-                    }
-		 else if (curStaticInst->getName()=="conv"){
-                    const RegId &reg = curStaticInst->srcRegIdx(0);
-                    RegVal r1 = thread->getReg(reg);
-                    const RegId &reg1 = curStaticInst->srcRegIdx(1);
-                    RegVal r2 = thread->getReg(reg1);
-                    FILE* fp;
-                    fp = fopen("/home/gem5/tmp_result/config.txt", "a");
-                    fprintf(fp, "%d\n", r1);
-                    fprintf(fp, "%d\n", r2);
-                    fclose(fp);
-                    //system("python  /home/test-instr/test.py > tmp_result/funct.txt 2>&1");
-                    }
-		 else if (curStaticInst->getName()=="maxpool"){
-                    const RegId &reg = curStaticInst->srcRegIdx(0);
-                    RegVal r1 = thread->getReg(reg);
-                    const RegId &reg1 = curStaticInst->srcRegIdx(1);
-                    RegVal r2 = thread->getReg(reg1);
-                    FILE* fp;
-                    fp = fopen("/home/gem5/tmp_result/config.txt", "a");
-                    fprintf(fp, "%d\n", r1);
-                    fprintf(fp, "%d\n", r2);
-                    fclose(fp);
-                    }
-
-                */  
                 fault = curStaticInst->execute(&t_info, traceData);
-                
+
                 // keep an instruction count
                 if (fault == NoFault) {
                     countInst();

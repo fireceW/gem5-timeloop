@@ -107,7 +107,6 @@ ImageFileData::ImageFileData(const std::string &fname)
     _filename = fname;
 
     // Open the file.
-    std::cout<<"fname :"<<fname<<std::endl; 
     int fd = open(fname.c_str(), O_RDONLY);
     fatal_if(fd < 0, "Failed to open file %s.\n"
         "This error typically occurs when the file path specified is "
