@@ -3,13 +3,13 @@ import os
 import numpy as np
 import sys
 
-
+  #TODO add other matrix ops
 def Load_Funct_Dict():
     funct_dict = {'add':'np.add','sub':'np.subtract'} 
     return funct_dict 
 
 
-
+  #getCycles() is used to get cycles from timeloop output
 def getCycles(filename, stringName, timeloop_flag):
     with open(filename, "r")as f:
         for line in f:
@@ -23,7 +23,7 @@ def getCycles(filename, stringName, timeloop_flag):
 
 
 
-
+    #tl_funct() is used to call timeloop to simulate NPU compute
 def tl_funct(instr):
     #Generate the configuration file in timeloop prob from the data in config.txt
     os.system("python ../gem-tl/outgem5_"+instr+".py")
@@ -41,17 +41,14 @@ def tl_funct(instr):
     #Statistics on timeloop output
     filename_timeloop = "timeloop-mapper.stats.txt"
     C_name = "Cycles"
-   # filename_gem5 = "/home/gem5/m5out/stats.txt"
-   # T_name = "system.cpu.numCycles"
 
     time = getCycles(filename_timeloop, C_name, 1)  
-   # print("NPU Execution time is :",time)
     
     with open('../tmp_result/cycle.txt', 'a') as f:
-       # f.write("NPU Execution time is :")
         f.write(str(time))
         f.write(",")
 
+   #TODO add more function
 def normal_funct(operator):
     with open("../tmp_result/config.txt") as f:
         data = f.readlines()[0:6]
@@ -60,21 +57,10 @@ def normal_funct(operator):
         w_h = int(data[2])
         w_w = int(data[3])
 
-    data = np.loadtxt('../tmp_result/input.txt', delimiter=',')
-    input = np.resize(data, (i_h,i_w))
-    data2 = np.loadtxt('../tmp_result/weight.txt', delimiter=',')
-    weight = np.resize(data2, (w_h,w_w))
-    
+    print("the ops is not implemented now ")
 
-    result = np.dot(input, weight)
-    result_int = result.astype(np.int8)
-    np.savetxt('../tmp_result/result.txt', result, fmt='%d',  delimiter=' ')
-
-    if w_h<= 5 and w_w == 1 :
-        print("timeloop's bug and do not know how to deal with it")
-    else:
-        tl_funct("gemm")
-
+   #gemm_funct() is used to compute matrix mul
+   #input weight and matrix size is read from file 
 def gemm_funct():
     with open("../tmp_result/config.txt") as f:
         data = f.readlines()[0:6]
@@ -112,7 +98,7 @@ def numpy_conv(inputs,filter,_result,padding="VALID"):
             conv_sum = np.sum(cur_output)
             result[r, c] = conv_sum
     return result
-
+    #conv_funct() is used to compute conv
 def conv_funct():
     with open("../tmp_result/config.txt") as f:
         data = f.readlines()[0:6]

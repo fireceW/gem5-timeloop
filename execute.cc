@@ -1013,7 +1013,7 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
 	   const RegId &reg1 = inst->staticInst->srcRegIdx(1);
 	   RegVal r1 = thread->getReg(reg1);
 	   FILE *fp;
-	   fp = fopen("/home/gem5/tmp_result/config.txt", "w");
+	   fp = fopen("../tmp_result/config.txt", "w");
 	   fprintf(fp, "%d\n" ,r0);
            fprintf(fp, "%d\n", r1);
 	   fclose(fp);
@@ -1025,7 +1025,7 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
 	   const RegId &reg1 = inst->staticInst->srcRegIdx(1);
 	   RegVal r1 = thread->getReg(reg1);
 	   FILE *fp;
-	   fp = fopen("/home/gem5/tmp_result/config.txt", "a");
+	   fp = fopen("../tmp_result/config.txt", "a");
 	   fprintf(fp, "%d\n" ,r0);							
 	   fprintf(fp, "%d\n", r1);
 	   fclose(fp);								
@@ -1037,11 +1037,11 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
              const RegId &reg1 = inst->staticInst->srcRegIdx(1);
              RegVal r1 = thread->getReg(reg1);
              FILE *fp;
-             fp = fopen("/home/gem5/tmp_result/config.txt", "a");       
+             fp = fopen("../tmp_result/config.txt", "a");       
 	     fprintf(fp, "%d\n" ,r0);
              fprintf(fp, "%d\n", r1);
              fclose(fp);
-	     system("python  /home/gem5/gem-tl/np_funct.py conv");
+	     system("python  ../gem-tl/np_funct.py conv");
          }
 
 	if(inst->staticInst->getName() == "gemm"){
@@ -1050,12 +1050,11 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
            const RegId &reg1 = inst->staticInst->srcRegIdx(1);
            RegVal r1 = thread->getReg(reg1);
            FILE *fp;
-           fp = fopen("/home/gem5/tmp_result/config.txt", "a");
+           fp = fopen("../tmp_result/config.txt", "a");
            fprintf(fp, "%d\n" ,r0);
            fprintf(fp, "%d\n", r1);
            fclose(fp);
-           system("python  /home/gem5/gem-tl/np_funct.py gemm");
-	   //system("python /home/gem5/gem-tl/np_gemm.py");
+           system("python  ../gem-tl/np_funct.py gemm");
 
         }
 	if(inst->staticInst->getName() == "maxpool"){
@@ -1064,11 +1063,11 @@ Execute::commitInst(MinorDynInstPtr inst, bool early_memory_issue,
            const RegId &reg1 = inst->staticInst->srcRegIdx(1);
            RegVal r1 = thread->getReg(reg1);
            FILE *fp;
-           fp = fopen("/home/gem5/tmp_result/config.txt", "w");
+           fp = fopen("../tmp_result/config.txt", "w");
            fprintf(fp, "%d\n" ,r0);
            fprintf(fp, "%d\n", r1);
            fclose(fp);
-	   system("python  /home/gem5/gem-tl/funct.py maxpool");
+	   system("python  ../gem-tl/funct.py maxpool");
         }
 
 
